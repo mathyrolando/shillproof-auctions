@@ -1,0 +1,5 @@
+VS Code - Latex
+
+En pdf: Ctrl + click izq 
+En código: Alt + s
+
