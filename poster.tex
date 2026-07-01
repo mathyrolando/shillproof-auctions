@@ -29,10 +29,10 @@
 
 \pagestyle{empty}
 
-\definecolor{ink}{HTML}{1C1C1E} %Black
-\definecolor{smoke}{HTML}{F2F2F7} %Light gray
-\definecolor{rulegray}{HTML}{BBBBBB} %Gray
-\definecolor{accent}{HTML}{0055AA} %Bl
+\definecolor{ink}{HTML}{1C1C1E}
+\definecolor{smoke}{HTML}{F2F2F7}
+\definecolor{rulegray}{HTML}{BBBBBB}
+\definecolor{accent}{HTML}{0055AA}
 \definecolor{colred}{HTML}{C0392B}
 \definecolor{colgrn}{HTML}{1A6B42}
 \definecolor{colblu}{HTML}{1A6B9B}
@@ -45,7 +45,7 @@
   rbar/.style={enhanced,colback=white,colframe=white,
     borderline west={8pt}{0pt}{colred},
     left=20pt,right=10pt,top=10pt,bottom=10pt,boxrule=0pt,arc=0pt},
-  gbar/.style={enhanced,colback=white,colframe=white,   
+  gbar/.style={enhanced,colback=white,colframe=white,
     borderline west={8pt}{0pt}{colgrn},
     left=20pt,right=10pt,top=10pt,bottom=10pt,boxrule=0pt,arc=0pt},
   bbar/.style={enhanced,colback=white,colframe=white,
@@ -59,6 +59,7 @@
 
 \newcommand{\redd}[1]{\textcolor{colred}{\textbf{#1}}}
 \newcommand{\grnd}[1]{\textcolor{colgrn}{\textbf{#1}}}
+\newcommand{\blud}[1]{\textcolor{colblu}{\textbf{#1}}}
 \newcommand{\mut}[1]{\textcolor{muted}{#1}}
 \newcommand{\slbl}[1]{\par\noindent\begingroup\raggedright\fontsize{20}{24}\selectfont\color{muted}\MakeUppercase{#1}\par\endgroup\vspace{2mm}}
 \newcommand{\stit}[1]{{\fontsize{38}{46}\selectfont\color{ink}\textbf{#1}}}
@@ -74,22 +75,22 @@
 % ── HEADER ────────────────────────────────────────────────
 \noindent
 \begin{tcolorbox}[header,width=\paperwidth]
-    \begin{minipage}[c]{0.58\linewidth}
-  {\fontsize{92}{105}\selectfont\color{white}\textbf{Subastas Shill-Proof}}\\[8mm]
-  {\fontsize{34}{42}\selectfont\color{white!70!ink}
-    Mathías Rolando\\[5mm]}
-  {\fontsize{24}{30}\selectfont\color{white!50!ink}\itshape
-    Facultad de Ciencias Exactas y Naturales\enspace·\enspace Universidad de Buenos Aires\\[3mm]}
-  {\fontsize{20}{25}\selectfont\color{white!40!ink}
-    Julio 2026}
-\end{minipage}%
-\hfill
-\begin{minipage}[c]{0.8\linewidth}
-  \raggedright
-  {\fontsize{30}{40}\selectfont\color{white!70!ink}\itshape
-    ``Qué formato de subastas le da a un vendedor \\
-    \textbf{cero incentivos} para presentar ofertas falsas?''}
-\end{minipage}
+  \begin{minipage}[c]{0.58\linewidth}
+    {\fontsize{92}{105}\selectfont\color{white}\textbf{Subastas Shill-Proof}}\\[8mm]
+    {\fontsize{34}{42}\selectfont\color{white!70!ink}
+      Mathías Rolando\\[5mm]}
+    {\fontsize{24}{30}\selectfont\color{white!50!ink}\itshape
+      Facultad de Ciencias Exactas y Naturales\enspace·\enspace Universidad de Buenos Aires\\[3mm]}
+    {\fontsize{20}{25}\selectfont\color{white!40!ink}
+      Julio 2026}
+  \end{minipage}%
+  \hfill
+  \begin{minipage}[c]{0.8\linewidth}
+    \raggedright
+    {\fontsize{30}{40}\selectfont\color{white!70!ink}\itshape
+      ``Qué formato de subastas le da a un vendedor \\
+      \textbf{cero incentivos} para presentar ofertas falsas?''}
+  \end{minipage}
 \end{tcolorbox}
 
 \vspace{15mm}
@@ -97,166 +98,180 @@
 \noindent\hspace{3cm}%
 \begin{minipage}[t]{47cm}
 
-%%% LEFT %%%
+  %%% LEFT %%%
 
-\slbl{Contexto}
-\stit{La práctica de las pujas falsas}
+  \slbl{Contexto}
+  \stit{La práctica de las pujas falsas}
 
-\vspace{3mm}
-\begin{tcolorbox}[shaded]
-\small\justifying
-Las \textbf{pujas falsas} (shill bids) son ofertas ficticias que el vendedor presenta para inflar el precio final.
-Los términos de Christie's permiten al subastador mover las ofertas ``hacia adelante o hacia atrás en la forma que él decida''.
-En eBay, se estima que aproximadamente el \textbf{10\% de los postores en eBay Motors} son falsos, a pesar de una prohibición explícita.
+  \vspace{3mm}
+  \begin{tcolorbox}[shaded]
+    \small\justifying
+    Las \textbf{pujas falsas} (shill bids) son ofertas ficticias que el vendedor presenta para inflar el precio.
+    Los términos de Christie's permiten al subastador mover las ofertas ``hacia adelante o hacia atrás en la forma que él decida'' (shill bids ``desde el candelabro'').
+    Chen et al.\ (2020) encuentran que cerca del \textbf{10\% de los postores en eBay Motors} son falsos, a pesar de una prohibición explícita.
 
-\medskip
-La teoría estándar esquiva esto asumiendo controles externos al mecanismo.
-\emph{Este artículo se pregunta: ¿puede el propio formato de subasta eliminar el incentivo de realizar pujas falsas?}
-\end{tcolorbox}
+    \medskip
+    ¿Por qué las pujas falsas importan incluso en subastas de valores privados? \emph{Depende del momento y la información disponible al vendedor.} En una subasta inglesa con distribución regular y reserva óptima, un vendedor con información solo sobre quiénes siguen activos \textbf{no querrá pujar falsamente}: la distribución regular hace que elevar la reserva ex-post sea no rentable en esperanza. Pero si el vendedor conoce todas las valoraciones, \emph{sí} querrá pujar para subir el precio hasta justo debajo del valor más alto.
 
-\shr
+    \medskip
+    La teoría estándar esquiva esto asumiendo controles externos al mecanismo.
+    \emph{Este artículo se pregunta: ¿puede el propio formato de subasta eliminar el incentivo de realizar pujas falsas?}
+  \end{tcolorbox}
 
-\stit{Modelo}
+  \shr
 
-\vspace{3mm}
-{\small\justifying
-Subasta en forma extensa de un único objeto, $N$ postores potenciales, valores $\theta_i\!\sim\! F$ i.i.d.
-\textbf{Postores falsos} (shills) $S$: valor privado cero, utilidad $=$ ingresos del vendedor $\sum_{j\in R}t_j$, observan todas las acciones.
-\textbf{Postores reales} $R$: utilidad cuasi-lineal $x_i\theta_i - t_i$.}
+  \stit{2. Modelo}
 
-\vspace{8mm}
-\noindent
-\begin{minipage}[t]{0.47\linewidth}
-\begin{tcolorbox}[rbar]
-{\small\textbf{Fuertemente Shill-Proof}}\\[6pt]
-{\footnotesize Estrategia dominante ex-post de no pujar falsamente: no es rentable incluso con \textbf{conocimiento total} de los valores de los demás.}
-\end{tcolorbox}
-\end{minipage}\hfill
-\begin{minipage}[t]{0.47\linewidth}
-\begin{tcolorbox}[bbar]
-{\small\textbf{Débilmente Shill-Proof}}\\[6pt]
-{\footnotesize Existe un equilibrio donde la ganancia esperada de la puja falsa es $\leq 0$: no es rentable dada la distribución a priori (prior).}
-\end{tcolorbox}
-\end{minipage}
+  \vspace{3mm}
+  {\small\justifying
+    Subasta en forma extensa de un único objeto. $N$ postores potenciales con valores $\theta_i\!\sim\! F$ i.i.d., $F$ discreta con soporte $0=\theta^1<\theta^2<\cdots<\theta^M$.}
 
-\shr
+  \vspace{5mm}
+  \noindent
+  \begin{minipage}[t]{0.47\linewidth}
+    \begin{tcolorbox}[rbar]
+      {\small\textbf{Postores falsos} $S$}\\[4pt]
+      {\footnotesize Valor privado $\theta_i=0$. Utilidad $= $ ingresos del vendedor $\sum_{j\in R}t_j$. Observan \textbf{todas} las acciones.}
+    \end{tcolorbox}
+  \end{minipage}\hfill
+  \begin{minipage}[t]{0.47\linewidth}
+    \begin{tcolorbox}[bbar]
+      {\small\textbf{Postores reales} $R$}\\[4pt]
+      {\footnotesize Utilidad cuasi-lineal $x_i\theta_i - t_i$. Creen que cada otro postor es real con prob.\ $p$ (independientemente).}
+    \end{tcolorbox}
+  \end{minipage}
 
-\stit{Fuertemente Shill-Proof}
+  \vspace{8mm}
+  {\footnotesize\justifying \textbf{Equilibrio y principio de revelación.} Se trabaja con equilibrios perfectos bayesianos de estrategia pura. Bajo condiciones estándar de monotonía (la transferencia del ganador no decrece cuando otro postor eleva su reporte) e IR, existe un mecanismo directo equivalente donde el postor falso reporta 0 en equilibrio. El espacio de diseño se reduce así a mecanismos directos con regla de asignación $\tilde x$ y transferencia $\tilde t$.}
 
-\vspace{8mm}
-{\small\textbf{Lema 3.1: Toda subasta fuertemente shill-proof es pay-as-bid.}}
-\vspace{4mm}
-\begin{tcolorbox}[sidebar]
-\footnotesize Cualquier subasta SSP satisface: la transferencia del ganador depende únicamente de su propio reporte, y no del reporte de los demás, manteniendo fija su asignación:
-\[
-  \tilde x_\xi(\theta_\xi,\theta_{-\xi}) = \tilde x_\xi(\theta_\xi,\theta'_{-\xi})
-  \;\Longrightarrow\;
-  \tilde t_\xi(\theta_\xi,\theta'_{-\xi}) = \tilde t_\xi(\theta_\xi,\theta'_{-\xi}).
-\]
-\end{tcolorbox}
+  \vspace{8mm}
+  \noindent
+  \begin{minipage}[t]{0.47\linewidth}
+    \begin{tcolorbox}[rbar]
+      {\small\textbf{Fuertemente Shill-Proof (SSP)}}\\[6pt]
+      {\footnotesize Estrategia \textbf{ex-post} de no pujar falsamente: no es rentable con \textbf{conocimiento total} de los valores de los demás. Condición más exigente.}
+    \end{tcolorbox}
+  \end{minipage}\hfill
+  \begin{minipage}[t]{0.47\linewidth}
+    \begin{tcolorbox}[bbar]
+      {\small\textbf{Débilmente Shill-Proof (WSP)}}\\[6pt]
+      {\footnotesize Existe un equilibrio donde la ganancia \textbf{esperada} de la puja falsa es $\leq 0$: no es rentable dada la distribución a priori.}
+    \end{tcolorbox}
+  \end{minipage}
 
-\vspace{8mm}
-{\small\textbf{Teorema 3.6: La única subasta óptima y fuertemente shill-proof es la \redd{subasta holandesa}.}}
-\vspace{4mm}
-\begin{tcolorbox}[rbar]
-\footnotesize
-\emph{¿Por qué?} Cualquier oferta holandesa finaliza la subasta inmediatamente: un postor falso que puja gana el artículo, obteniendo \$0. En cualquier otro formato existe un historial donde una oferta falsa eleva la reserva efectiva o infla la competencia percibida sin finalizar la subasta, haciendo que las pujas falsas sean rentables.
-\end{tcolorbox}
+  \shr
 
-\vspace{8mm}
-{\small\justifying\textbf{Estructura de información (Proposición 3.3).}\enspace
-La subasta de primer precio es SSP solo bajo una estructura estática (a sobre cerrado). Cualquier filtración de información entre postores rompe la propiedad SSP.}
+  \stit{3. Fuertemente Shill-Proof}
+
+  \vspace{8mm}
+  {\small\textbf{Lema 3.1: Toda subasta fuertemente shill-proof es pay-as-bid.}}
+  \vspace{4mm}
+  \begin{tcolorbox}[sidebar]
+    \footnotesize Cualquier subasta SSP satisface: fijada la asignación del ganador $\xi$, su transferencia depende \emph{solo} de su propio reporte, no del de los demás:
+    \[
+      \tilde x_\xi(\theta_\xi,\theta_{-\xi}) = \tilde x_\xi(\theta_\xi,\theta'_{-\xi})
+      \;\Longrightarrow\;
+      \tilde t_\xi(\theta_\xi,\theta_{-\xi}) = \tilde t_\xi(\theta_\xi,\theta'_{-\xi}).
+    \]
+    \emph{Intuición:} si $\tilde t_\xi$ dependiera de $\theta_{-\xi}$, un postor falso podría cambiar el valor reportado de otro postor para elevar la transferencia.
+  \end{tcolorbox}
+
+  \vspace{8mm}
+  {\small\textbf{Teorema 3.6: La única subasta óptima y fuertemente shill-proof es la \redd{subasta holandesa}.}}
+  \vspace{4mm}
+  \begin{tcolorbox}[rbar]
+    \footnotesize
+    \emph{¿Por qué?} Toda puja holandesa finaliza la subasta inmediatamente: el postor falso que puja gana el artículo con valor 0, obteniendo \$0 para el vendedor. En cualquier otro formato existe un historial donde una puja falsa eleva la reserva efectiva o infla la competencia percibida \emph{sin} terminar la subasta, haciendo rentable la puja falsa con información completa.\hfill$\square$
+  \end{tcolorbox}
+
+  \vspace{8mm}
+  {\small\justifying\textbf{Proposición 3.3 — Estructura de información.}\enspace
+    En el entorno de valores privados, la subasta de primer precio sellada es SSP. Sin embargo, en subastas públicas (donde las acciones de los postores son observables), la subasta de primer precio \emph{no} es SSP: cualquier filtración de información entre postores otorga al postor falso la capacidad de ajustar su puja para elevar el pago de los demás.}
 
 \end{minipage}%
 \hspace{2cm}%
 \begin{minipage}[t]{35cm}
 
-%%% RIGHT %%%
+  %%% RIGHT %%%
 
-\stit{Shill-proofness débil}
+  \stit{4. Débilmente Shill-Proof}
 
-\slbl{El trilema}
-\begin{tcolorbox}[shaded]
-\footnotesize\textbf{Teorema 4.3.}\enspace Ninguna subasta ordenada puede ser simultáneamente de acción única, levemente compatible con incentivos (IC) ex-post y débilmente shill-proof.
+  \slbl{El trilema}
+  \begin{tcolorbox}[shaded]
+    \footnotesize\textbf{Teorema 4.3.}\enspace Ninguna subasta ordenada puede ser simultáneamente de \textbf{acción única}, levemente \textbf{IC ex-post} y \textbf{débilmente shill-proof}.
 
-\smallskip\emph{Bosquejo de la demostración:} WSP obliga a que la transferencia del ganador sea independiente de los reportes de los postores posteriores; la propiedad IC ex-post leve (mild EPIC) obliga a la independencia del propio reporte del ganador. La transferencia entonces solo depende de los reportes anteriores, de modo que el ganador siempre reporta $\theta^M$ para maximizar la probabilidad de ganar sin aumentar su pago, lo que rompe la regla de asignación.\hfill$\square$
-\end{tcolorbox}
+    \smallskip\emph{Bosquejo:} WSP obliga a que la transferencia del ganador sea independiente de los reportes de postores posteriores; la IC ex-post leve (mild EPIC) obliga a la independencia del propio reporte del ganador. La transferencia solo depende entonces de los reportes anteriores, de modo que el ganador siempre reporta $\theta^M$ maximizando su prob.\ de ganar sin subir su pago, lo que rompe la regla de asignación.\hfill$\square$
 
-\vspace{6mm}
+    \smallskip\mut{Consecuencia: primer precio (acción única + WSP), segundo precio (acción única + IC ex-post), subasta inglesa (IC ex-post + WSP). Ninguna satisface las tres.}
+  \end{tcolorbox}
 
-\begin{center}
-\begin{tikzpicture}[scale=2.7]
-  \coordinate (A) at (0,0);
-  \coordinate (B) at (7.2,0);
-  \coordinate (C) at (3.6,6.0);
+  \vspace{6mm}
 
-  % Triángulo de fondo
-  \fill[smoke] (A)--(B)--(C)--cycle;
-  \draw[ink,line width=3.5pt] (A)--(B)--(C)--cycle;
+  \begin{center}
+    \begin{tikzpicture}[scale=2.7]
+      \coordinate (A) at (0,0);
+      \coordinate (B) at (7.2,0);
+      \coordinate (C) at (3.6,6.0);
 
-  % --- Etiquetas de los lados ---
-  \node[font=\normalsize\itshape,text=colgrn,align=center]
-    at ($(A)!0.5!(B)+(0,-0.7cm)$) {Subasta inglesa};
-  \node[font=\normalsize\itshape,text=accent,align=center,rotate=57]
-    at ($(A)!0.5!(C)+(-1.0cm,0.5cm)$) {Primer precio};
-  \node[font=\normalsize\itshape,text=muted,align=center,rotate=-57]
-    at ($(B)!0.5!(C)+(1.0cm,0.5cm)$) {Segundo precio};
+      \fill[smoke] (A)--(B)--(C)--cycle;
+      \draw[ink,line width=3.5pt] (A)--(B)--(C)--cycle;
 
-  % --- Texto central "Imposible" ---
-  \node[font=\Large\bfseries,text=colred] at (3.6,2.5) {\redd{Imposible}};
-  \node[font=\small,text=muted,align=center]
-    at (3.6,1.5) {ninguna subasta\\satisface las tres\\propiedades};
+      \node[font=\normalsize\itshape,text=colgrn,align=center]
+      at ($(A)!0.5!(B)+(0,-0.7cm)$) {Subasta inglesa};
+      \node[font=\normalsize\itshape,text=accent,align=center,rotate=57]
+      at ($(A)!0.5!(C)+(-1.0cm,0.5cm)$) {Primer precio};
+      \node[font=\normalsize\itshape,text=muted,align=center,rotate=-57]
+      at ($(B)!0.5!(C)+(1.0cm,0.5cm)$) {Segundo precio};
 
-  % --- Círculos en los vértices ---
-  \fill[white] (A) circle (38pt);
-  \draw[ink,line width=3.5pt] (A) circle (38pt);
-  \fill[white] (B) circle (38pt);
-  \draw[ink,line width=3.5pt] (B) circle (38pt);
-  \fill[white] (C) circle (38pt);
-  \draw[ink,line width=3.5pt] (C) circle (38pt);
+      \node[font=\Large\bfseries,text=colred] at (3.6,2.5) {\redd{Imposible}};
+      \node[font=\small,text=muted,align=center]
+      at (3.6,1.5) {ninguna subasta\\satisface las tres\\propiedades};
 
-  % --- Etiquetas de los vértices: sin text width, usando \shortstack para centrado real línea por línea ---
-  \node[font=\normalsize\bfseries,text=ink,inner sep=0pt]
-    at (A) {\shortstack{Débilmente\\shill-proof}};
-  \node[font=\normalsize\bfseries,text=ink,inner sep=0pt]
-    at (B) {\shortstack{IC\\ex-post}};
-  \node[font=\normalsize\bfseries,text=ink,inner sep=0pt]
-    at (C) {\shortstack{Acción\\única}};
-\end{tikzpicture}
-\end{center}
+      \fill[white] (A) circle (38pt);
+      \draw[ink,line width=3.5pt] (A) circle (38pt);
+      \fill[white] (B) circle (38pt);
+      \draw[ink,line width=3.5pt] (B) circle (38pt);
+      \fill[white] (C) circle (38pt);
+      \draw[ink,line width=3.5pt] (C) circle (38pt);
 
+      \node[font=\normalsize\bfseries,text=ink,inner sep=0pt]
+      at (A) {\shortstack{Débilmente\\shill-proof}};
+      \node[font=\normalsize\bfseries,text=ink,inner sep=0pt]
+      at (B) {\shortstack{IC\\ex-post}};
+      \node[font=\normalsize\bfseries,text=ink,inner sep=0pt]
+      at (C) {\shortstack{Acción\\única}};
+    \end{tikzpicture}
+  \end{center}
 
-\shr
+  \shr
 
+  {\small\textbf{Subastas eficientes (Corolario 4.8).}}
+  \vspace{4mm}
+  \begin{tcolorbox}[gbar]
+    \footnotesize La única subasta WSP pública, eficiente e \textbf{independiente del prior} es la \grnd{subasta holandesa con reserva 0}.
 
-\vspace{8mm}
-{\small\textbf{Subastas eficientes.}}
-\vspace{4mm}
-\begin{tcolorbox}[gbar]
-\footnotesize\textbf{Teorema 4.8.}\enspace La única subasta WSP pública, eficiente e independiente de la distribución a priori es la \grnd{subasta holandesa con reserva 0}.
+    \smallskip Con reserva conocida $\theta^{\rho^*}$, toda subasta WSP eficiente debe ser \textbf{semi-holandesa}: ejecutar una fase holandesa cuando todas las valoraciones caen por debajo de $\theta^{\rho^*}$.
 
-\smallskip Con una reserva conocida $\theta^{\rho^*}$, cualquier subasta WSP eficiente debe ser \textbf{semi-holandesa}: debe ejecutar una fase holandesa siempre que todas las valoraciones caigan por debajo de $\theta^{\rho^*}$.
+    \smallskip\mut{Ejemplo real: subastas de pescado Honolulu--Sydney y de flores de Estambul (Hafalir et al., 2023) descienden a una fase holandesa si nadie puja al precio de apertura.}
+  \end{tcolorbox}
 
-\smallskip\mut{Ejemplo del mundo real: las subastas de pescado de Honolulu-Sydney y de flores de Estambul (Hafalir et al., 2023) descienden a una fase holandesa si nadie puja al precio de apertura.}
-\end{tcolorbox}
+  \vspace{8mm}
+  {\small\textbf{Subasta de cribado ascendente — Proposición 4.12.}}
 
-\vspace{10mm}
-{\small\textbf{Más rápida que la subasta inglesa.}}
+  \vspace{4mm}
+  {\footnotesize La subasta inglesa es WSP + IC ex-post + óptima, pero consulta a cada postor hasta $M{-}\rho^*{+}1$ veces. La \textbf{subasta de cribado ascendente}:
+    \begin{enumerate}
+      \item Fase inglesa desde $\theta^{\rho^*}$ hasta el nivel de cribado $\theta^Y$.
+      \item Subasta de segundo precio entre los sobrevivientes.
+    \end{enumerate}}
 
-\vspace{4mm}
-{\footnotesize La subasta inglesa es WSP + IC ex-post + óptima, pero consulta a cada postor hasta $M{-}\rho^*{+}1$ veces. La \textbf{subasta de cribado ascendente} (ascending-screening):
-\begin{enumerate}
-  \item Fase inglesa desde $\theta^{\rho^*}$ hasta el nivel de cribado $\theta^Y$.
-  \item Subasta de segundo precio entre los sobrevivientes.
-\end{enumerate}}
-
-\begin{tcolorbox}[sidebar]
-\footnotesize\textbf{Teorema 4.12.}\enspace Para cualquier $\varepsilon>0$, existen $F$ y $\theta^Y$ tales que la subasta de cribado ascendente es WSP, IC ex-post y óptima, mientras que
-\[
-  \frac{Q^{AS,Y}(F)}{Q^E(F)} \;<\; \varepsilon.
-\]
-\emph{Arbitrariamente más rápida que la subasta inglesa sin sacrificar la compatibilidad con incentivos (strategy-proofness).}
-\end{tcolorbox}
+  \begin{tcolorbox}[sidebar]
+    \footnotesize\textbf{Proposición 4.12.}\enspace Para cualquier $\varepsilon>0$, existen $F$ y $\theta^Y$ tales que la subasta de cribado ascendente es WSP, IC ex-post y óptima, con
+    \[
+      \frac{Q^{AS,Y}(F)}{Q^E(F)} \;<\; \varepsilon.
+    \]
+    \emph{Arbitrariamente más rápida que la subasta inglesa sin perder strategy-proofness.} La condición suficiente es que $F$ tenga cola derecha suficientemente delgada (tasa de riesgo monótona).
+  \end{tcolorbox}
 
 \end{minipage}
 
@@ -271,60 +286,118 @@ La subasta de primer precio es SSP solo bajo una estructura estática (a sobre c
 \noindent\hspace{3cm}%
 \begin{minipage}[t]{47cm}
 
-\stit{Valores afiliados e interdependientes}
+  %%% SECCIÓN 5 — todo aquí %%%
 
-\vspace{6mm}
-\begin{tcolorbox}[shaded]
-\footnotesize\textbf{Teorema 5.4.}\enspace La propiedad shill-proof es monótona: si una subasta es SSP (o WSP) bajo $(v,F)$, lo sigue siendo bajo $(v',F')$ siempre que
-$v'\succeq_{\rm Com} v$ y $F\succeq_{\rm Aff} F'$.
+  \stit{5. Afiliación, Valores Interdependientes y Shill-Proofness}
 
-\medskip\emph{Tipos más afiliados o valores más comunes hacen que la propiedad SP sea estrictamente más difícil de satisfacer.}
-Todos los resultados principales se extienden a este entorno general.
-\end{tcolorbox}
+  \vspace{6mm}
+  {\small\justifying Se generaliza el modelo a tipos afiliados (Milgrom \& Weber 1982) y función de valor interdependiente $v(\theta_i, \theta_{-i})$ satisfaciendo:}
 
-\end{minipage}
+  \vspace{4mm}
+  \begin{tcolorbox}[shaded]
+    \footnotesize\textbf{Supuesto 5.1.} La función de valor $v$ satisface: (i) $v(\theta^k,0)=\theta^k$ (normalización); (ii) $v$ es no decreciente en $\theta_{-i}$ (valores comunes); (iii) si $\theta_i\geq\theta_j$ entonces $v(\theta_i,\{\theta_j,\ldots\})\geq v(\theta_j,\{\theta_i,\ldots\})$ (single-crossing); (iv) $v$ es supramodular con diferencias decrecientes para el ganador.
+
+    \smallskip Ejemplos: valores privados ($v=\theta_i$), valores aditivos interdependientes ($v=\theta_i+\kappa\sum_{j\neq i}\theta_j$, $\kappa\leq 1$), y valores máximos comunes ($v=\max_i\theta_i$).
+  \end{tcolorbox}
+
+  \vspace{6mm}
+  \begin{tcolorbox}[shaded]
+    \footnotesize\textbf{Teorema 5.4 — Monotonicidad de shill-proofness.}\enspace Si una subasta es SSP (o WSP) bajo $(v,F)$, lo sigue siendo bajo $(v',F')$ siempre que $v'\succeq_{\rm Com} v$ y $F\succeq_{\rm Aff} F'$.
+
+    \medskip En palabras: \emph{tipos más afiliados o valores más comunes hacen que la propiedad SP sea \textbf{más difícil} de satisfacer.} Equivalentemente, si el entorno se vuelve menos correlacionado y más privado, el conjunto de subastas shill-proof se \textbf{expande}.
+  \end{tcolorbox}
+
+  \vspace{6mm}
+  \begin{tcolorbox}[sidebar]
+    \footnotesize\textbf{Proposición 5.7.}\enspace Bajo cualquier distribución afiliada y función de valor que satisface el Supuesto 5.1, toda subasta SSP es \textbf{pay-as-bid}: fijada la asignación, la transferencia del ganador no depende de los reportes de los demás. Además, la regla de asignación óptima tiene la misma estructura de reserva $\theta^{\rho^*}$ que en el caso IPV.
+  \end{tcolorbox}
+
+  \vspace{6mm}
+  \begin{tcolorbox}[rbar]
+    \footnotesize\textbf{Corolario 5.8.}\enspace Bajo cualquier distribución afiliada y $v$ satisfaciendo Sup.\ 5.1, la \redd{subasta holandesa} (con transferencia pay-as-bid apropiada y reserva $\theta^{\rho^*}$) es la \emph{única} subasta óptima y fuertemente shill-proof.
+  \end{tcolorbox}
+
+  \vspace{6mm}
+  \begin{tcolorbox}[bbar]
+    \footnotesize\textbf{Corolario 5.9.}\enspace Bajo cualquier distribución afiliada y $v$ satisfaciendo Sup.\ 5.1, \emph{no existe} ninguna subasta de acción única, levemente IC ex-post y débilmente shill-proof. El trilema persiste en el entorno general.
+  \end{tcolorbox}
+
+  \vspace{6mm}
+  \begin{tcolorbox}[gbar]
+    \footnotesize\textbf{Corolario 5.10.}\enspace Para cualquier distribución afiliada y $v$ satisfaciendo Sup.\ 5.1, la \grnd{subasta holandesa con reserva 0} es la única subasta pública, eficiente y WSP que es robusta a todas las distribuciones. Cualquier otra subasta eficiente no será WSP para alguna distribución.
+  \end{tcolorbox}
+
+\end{minipage}%
 \hspace{2cm}%
 \begin{minipage}[t]{35cm}
 
-\stit{Extensión al concepto de credibilidad}
+  %%% SECCIÓN 6 — todo aquí %%%
 
-\vspace{6mm}
-{\small\justifying Akbarpour \& Li (2020) definen la \textbf{credibilidad}: el subastador no tiene incentivos para reportar falsamente las acciones de otros postores. Nuestras nociones están relacionadas:}
+  \stit{6. Discusión}
 
-\vspace{6mm}
-\begin{tcolorbox}[sidebar]
-\footnotesize\textbf{Teorema 6.1.}
-\[
-  \text{Fuertemente Shill-Proof} \;\Longrightarrow\; \text{Creíble} \;\Longrightarrow\; \text{Débilmente Shill-Proof}.
-\]
-Existen muchas subastas creíbles, pero solo \textbf{una} subasta óptima SSP.
-El siguiente trilema generaliza el trilema de credibilidad de Akbarpour \& Li.
-\end{tcolorbox}
+  \vspace{6mm}
+  {\small\justifying Akbarpour \& Li (2020) definen la \textbf{credibilidad}: el subastador no tiene incentivos para \emph{reportar falsamente las acciones} de otros postores a los demás. Esta noción difiere conceptualmente de la shill-proofness (que trata sobre la inserción de pujas falsas), pero están relacionadas:}
 
-\end{minipage}%
+  \vspace{6mm}
+  \begin{tcolorbox}[sidebar]
+    \footnotesize\textbf{Proposición 6.1.}\enspace Para toda subasta ordenada $(G,\sigma)$:
+    \[
+      \underbrace{\text{Fuertemente Shill-Proof}}_{\text{SSP}} \;\Longrightarrow\; \underbrace{\text{Creíble}}_{\text{Akb.\,\&\,Li}} \;\Longrightarrow\; \underbrace{\text{Débilmente Shill-Proof}}_{\text{WSP}}.
+    \]
+    \smallskip Existen \emph{muchas} subastas creíbles, pero solo \textbf{una} subasta óptima SSP (la holandesa). Existen muchas subastas WSP, pero solo \textbf{una} creíble y strategy-proof (la inglesa con reserva óptima).
+  \end{tcolorbox}
 
+  \vspace{6mm}
+  {\small\justifying\textbf{$\psi$-credibilidad para subastas de acción única.}\enspace Se generaliza la credibilidad permitiendo que los postores tengan señales exógenas $\psi$ sobre las acciones de los demás ($\psi{=}\emptyset$: subasta estática; $\psi{=}\mathrm{Id}$: las señales revelan todas las acciones previas):}
 
+  \vspace{5mm}
+  \begin{tcolorbox}[shaded]
+    \footnotesize\textbf{Proposición 6.2.}\enspace Para toda subasta de acción única y ordenada $(G,\sigma)$:
+    \begin{itemize}
+      \item SSP $\Rightarrow$ $\psi$-creíble, para todo $\psi$.
+      \item $(\psi{=}\emptyset)$-creíble $\Rightarrow$ SSP.
+      \item $\psi$-creíble $\Rightarrow$ WSP, para todo $\psi$.
+      \item WSP $\Rightarrow$ $(\psi{=}\mathrm{Id})$-creíble.
+    \end{itemize}
+    \smallskip Consecuencia: el \textbf{Teorema 4.3 generaliza el trilema de credibilidad} de Akbarpour \& Li (2020, Teorema 1): ninguna subasta de acción única puede ser simultáneamente $(\psi{=}\emptyset)$-creíble, IC ex-post y $(\psi{=}\mathrm{Id})$-creíble, lo que recupera el trilema original como caso particular.
+  \end{tcolorbox}
 
+  \vspace{8mm}
+  {\small\textbf{Extensión a estrategias dominantes (Sección 6.2).}}
+  \vspace{5mm}
+  \begin{tcolorbox}[rbar]
+    \footnotesize\textbf{Subasta holandesa.}\enspace Pujar falsamente siempre genera ingreso 0 para el vendedor (el postor falso gana el artículo). Por lo tanto, \emph{no pujar falsamente es una estrategia \textbf{débilmente dominante}}, independientemente de lo que hagan los demás postores o de la información disponible.
 
+    \smallskip Dado que ninguna otra subasta tiene una estrategia ex-post de no pujar falsamente, no puede existir otra subasta con estrategia dominante de no hacerlo.
+  \end{tcolorbox}
 
+  \vspace{6mm}
+  \begin{tcolorbox}[gbar]
+    \footnotesize\textbf{Trilema y subasta de cribado.}\enspace El Teorema 4.3 se mantiene bajo estrategias dominantes: la IC por estrategia dominante es \emph{más fuerte} que la IC ex-post, por lo que la imposibilidad se preserva. La subasta de cribado ascendente admite equilibrios en estrategias dominantes si los postores actúan simultáneamente en cada ronda de la fase inglesa y en la fase de segundo precio.
+  \end{tcolorbox}
 
+  \vspace{6mm}
+  \begin{tcolorbox}[bbar]
+    \footnotesize\textbf{Trabajo relacionado.}\enspace Shinozaki (2024) y Zeng (2024) estudian la shill-proofness mediante clases de equivalencia de resultados. Muestran que si los postores falsos pueden aumentar la \emph{competencia percibida} fuera del mecanismo, solo el \emph{mecanismo de precio publicado} es no manipulable. Nuestros resultados son complementarios: mostramos que la dinámica del mecanismo es clave para prevenir las pujas falsas \emph{dentro} del mecanismo.
+  \end{tcolorbox}
 
+\end{minipage}
 
-
-
-
-
-
-
-
-\vspace{20mm}
+\vspace{14mm}
 \noindent\hspace{3cm}%
 \begin{minipage}{84cm}
-{\color{rulegray}\hrule height 2.5pt}
-\vspace{5mm}
-{\footnotesize\color{muted}
-  
-}
+  {\color{rulegray}\hrule height 2.5pt}
+  \vspace{5mm}
+  {\footnotesize\color{muted}
+    \textbf{Paper:} Komo, Kominers \& Roughgarden (2025), ``Shill-Proof Auctions,'' arXiv:2404.00475.\quad
+    \textbf{Referencias:}
+    Akbarpour \& Li (2020), \textit{Econometrica} 88(2).
+    Chen et al.\ (2020), \textit{Working Paper}.
+    Hafalir et al.\ (2023), \textit{Working Paper}.
+    Li (2017), \textit{AER} 107(11).
+    Milgrom \& Weber (1982), \textit{Econometrica} 50(5).
+    Shinozaki (2024) \& Zeng (2024), \textit{Working Papers}.
+  }
 \end{minipage}
 
 \end{document}
